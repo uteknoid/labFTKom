@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: Jan 25, 2022 at 08:14 AM
+=======
+-- Generation Time: Jan 21, 2022 at 04:24 PM
+>>>>>>> ec3497c7bfe0b09ae2fffdf2f703f8cad299a1d4
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.21
 
@@ -122,6 +126,7 @@ CREATE TABLE `pengeluaran` (
   `bukti` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+<<<<<<< HEAD
 --
 -- Dumping data for table `pengeluaran`
 --
@@ -131,6 +136,8 @@ INSERT INTO `pengeluaran` (`id`, `tanggal`, `uraian`, `tipe`, `volume`, `satuan`
 (6, '2022-01-25', 'sdfsdfsdf', 'asdasdsd', 10, 'rrr', '10000', '100000', 'uteknoid1.png'),
 (7, '2022-01-26', 'dgdgdgdg', 'ssssdff', 1, 'dfd', '100000', '100000', 'uteknoid2.png');
 
+=======
+>>>>>>> ec3497c7bfe0b09ae2fffdf2f703f8cad299a1d4
 -- --------------------------------------------------------
 
 --
@@ -186,6 +193,7 @@ CREATE TABLE `saldo` (
   `id` int(11) NOT NULL,
   `tanggal` date NOT NULL,
   `saldo_masuk` varchar(255) NOT NULL,
+<<<<<<< HEAD
   `ket` text NOT NULL,
   `bukti_saldo` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -199,6 +207,11 @@ INSERT INTO `saldo` (`id`, `tanggal`, `saldo_masuk`, `ket`, `bukti_saldo`) VALUE
 (7, '2022-01-26', '1000000', 'Semester V', 'uteknoid1.png'),
 (8, '2022-01-27', '1000000', 'Semester VI', 'uteknoid2.png');
 
+=======
+  `bukti_saldo` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+>>>>>>> ec3497c7bfe0b09ae2fffdf2f703f8cad299a1d4
 -- --------------------------------------------------------
 
 --
@@ -215,7 +228,11 @@ CREATE TABLE `saldo_terkini` (
 --
 
 INSERT INTO `saldo_terkini` (`id`, `saldo_terkini`) VALUES
+<<<<<<< HEAD
 (1, '6798000');
+=======
+(1, '0');
+>>>>>>> ec3497c7bfe0b09ae2fffdf2f703f8cad299a1d4
 
 -- --------------------------------------------------------
 
@@ -327,7 +344,11 @@ ALTER TABLE `option_laporan`
 -- AUTO_INCREMENT for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+>>>>>>> ec3497c7bfe0b09ae2fffdf2f703f8cad299a1d4
 
 --
 -- AUTO_INCREMENT for table `pinjam`
@@ -345,7 +366,11 @@ ALTER TABLE `ruang_lab`
 -- AUTO_INCREMENT for table `saldo`
 --
 ALTER TABLE `saldo`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+>>>>>>> ec3497c7bfe0b09ae2fffdf2f703f8cad299a1d4
 
 --
 -- AUTO_INCREMENT for table `user`
