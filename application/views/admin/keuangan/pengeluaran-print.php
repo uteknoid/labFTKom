@@ -29,7 +29,7 @@ class FPDF_AutoWrapTable extends FPDF
         $left = 25;
 
         #data dari database
-        $con=mysqli_connect("localhost", "root", "", "db_lab");
+        $con=mysqli_connect("localhost", "root", "", "labftkom");
 
         //header
         $data = mysqli_query($con,"select * from option");
@@ -62,7 +62,7 @@ class FPDF_AutoWrapTable extends FPDF
                 $this->Ln(10);
                 $this->SetFont("", "B", 12);
                 $this->SetX($left);
-                $this->Cell(0, 20, 'LAPORAN DATA USER', 0, 1, 'C');
+                $this->Cell(0, 20, 'LAPORAN DATA PENGELUARAN', 0, 1, 'C');
                 $this->Ln(10);
             }
         }
@@ -74,42 +74,124 @@ class FPDF_AutoWrapTable extends FPDF
         #tableheader
         $this->SetFillColor(200, 200, 200);
         $left = $this->GetX();
-        $this->SetFont("", "B", 7);
-        $this->Cell(23, $h, 'NO', 1, 0, 'L', true);
-        $this->SetX($left += 23);
-        $this->Cell(70, $h, 'NPM/NIM', 1, 0, 'C', true);
-        $this->SetX($left += 70);
-        $this->Cell(200, $h, 'NAMA LENGKAP', 1, 0, 'C', true);
-        $this->SetX($left += 200);
-        $this->Cell(100, $h, 'EMAIL', 1, 0, 'C', true);
+        $this->SetFont("", "B", 6);
+        $this->Cell(50, $h, 'TANGGAL', 1, 0, 'C', true);
+        $this->SetX($left += 50);
+        $this->Cell(100, $h, 'URAIAN', 1, 0, 'C', true);
         $this->SetX($left += 100);
-        $this->Cell(70, $h, 'HP', 1, 0, 'C', true);
-        $this->SetX($left += 70);
-        $this->Cell(75, $h, 'ID LEVEL', 1, 1, 'C', true);
+        $this->Cell(100, $h, 'TIPE/MEREK', 1, 0, 'C', true);
+        $this->SetX($left += 100);
+        $this->Cell(20, $h, 'VOL', 1, 0, 'C', true);
+        $this->SetX($left += 20);
+        $this->Cell(20, $h, 'STN', 1, 0, 'C', true);
+        $this->SetX($left += 20);
+        $this->Cell(60, $h, 'HARGA SATUAN', 1, 0, 'C', true);
+        $this->SetX($left += 60);
+        $this->Cell(60, $h, 'KREDIT', 1, 0, 'C', true);
+        $this->SetX($left += 60);
+        $this->Cell(60, $h, 'DEBET', 1, 0, 'C', true);
+        $this->SetX($left += 60);
+        $this->Cell(60, $h, 'SALDO', 1, 1, 'C', true);
         //$this->Ln(20);
 
-        $this->SetFont('Arial', '', 9);
-        $this->SetWidths(array(23, 70, 200, 100, 70, 75));
-        $this->SetAligns(array('C', 'L', 'L', 'L', 'L', 'C'));
-        $no = 1;
+        $this->SetFont('Arial', 'B', 6);
+        $this->SetWidths(array(50, 100, 100, 20, 20,60,60,60,60));
+        $this->SetAligns(array('C', 'C', 'L', 'L', 'C', 'C'));
         $this->SetFillColor(255);
 
         
 
-        $sql = mysqli_query($con, "select * from user");
-        while ($data = mysqli_fetch_array($sql)) {
+        $sqls = mysqli_query($con, "select * from saldo");
+        while ($datas = mysqli_fetch_array($sqls)) {
+
+            $saldo_tanggal = $datas['tanggal'];
+            $saldo_masuk = "Rp. " . number_format($datas['saldo_masuk'], 0, ",", ".");
+            $saldo_ket = $datas['ket'];
+
             $this->Row(
                 array(
-                    $no++,
-                    $data['npm'],
-                    $data['name'],
-                    $data['email'],
-                    $data['hp'],
-                    $data['role_id']
+                    date('d/m/Y', strtotime($saldo_tanggal)),
+                    $saldo_ket,
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    $saldo_masuk,
+                    ''
+
+
+                )
+            );
+
+
+            $this->SetFont('Arial', '', 6);
+            $this->SetWidths(array(50, 100, 100, 20, 20,60,60,60,60));
+            $this->SetAligns(array('C', 'C', 'L', 'L', 'C', 'C'));
+            $no = 1;
+            $this->SetFillColor(255);
+
+            $sql = mysqli_query($con, "select * from pengeluaran where tanggal='$saldo_tanggal'");
+            while ($data = mysqli_fetch_array($sql)) {
+                $harga = "Rp. " . number_format($data['harga'], 0, ",", ".");
+                $kredit = "Rp. " . number_format($data['kredit'], 0, ",", ".");
+                $this->Row(
+                    array(
+                        date('d/m/Y', strtotime($data['tanggal'])),
+                        $data['uraian'],
+                        $data['tipe'],
+                        $data['volume'],
+                        $data['satuan'],
+                        $harga,
+                        $kredit,
+                        '',
+                        ''
+
+
+                    )
+                );
+            }
+            $this->SetFont('Arial', 'B', 6);
+        }
+
+
+
+
+
+        $this->SetFont('Arial', '', 6);
+        $this->SetWidths(array(350,60,60,60));
+        $this->SetAligns(array('C', 'L'));
+        $no = 1;
+        $this->SetFillColor(255);
+
+
+
+        $sql = mysqli_query($con, "select SUM(saldo_masuk) as total_saldo_masuk from saldo");
+        while ($datas = mysqli_fetch_array($sql)) {
+            $total_saldo_masuk = "Rp. " . number_format($datas['total_saldo_masuk'], 0, ",", ".");
+        }
+
+        $sql = mysqli_query($con, "select SUM(kredit) as total_kredit from pengeluaran");
+        while ($datap = mysqli_fetch_array($sql)) {
+            $total_kredit = "Rp. " . number_format($datap['total_kredit'], 0, ",", ".");
+        }
+
+        $sql = mysqli_query($con, "select * from saldo_terkini");
+        while ($datat = mysqli_fetch_array($sql)) {
+            $saldo_terkini = "Rp. " . number_format($datat['saldo_terkini'], 0, ",", ".");
+            $this->Row(
+                array(
+                    'Total',
+                    $total_kredit,
+                    $total_saldo_masuk,
+                    $saldo_terkini
+
 
                 )
             );
         }
+
+
 
         # untuk menuliskan nama bulan dengan format Indonesia
         $bln = array(

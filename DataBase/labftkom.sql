@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2022 at 03:49 AM
+-- Generation Time: Jan 25, 2022 at 08:14 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.21
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_lab`
+-- Database: `labftkom`
 --
 
 -- --------------------------------------------------------
@@ -33,14 +33,6 @@ CREATE TABLE `alat` (
   `jumlah` int(11) NOT NULL,
   `jenis` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `alat`
---
-
-INSERT INTO `alat` (`id`, `nama_alat`, `jumlah`, `jenis`) VALUES
-(4, 'Projector', 10, 'Tidak Habis'),
-(6, 'Konektor RJ45', 100, 'Habis');
 
 -- --------------------------------------------------------
 
@@ -115,6 +107,33 @@ INSERT INTO `option_laporan` (`id`, `header1`, `header2`, `alamat`, `telp`, `sit
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pengeluaran`
+--
+
+CREATE TABLE `pengeluaran` (
+  `id` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `uraian` text NOT NULL,
+  `tipe` text NOT NULL,
+  `volume` int(11) NOT NULL,
+  `satuan` varchar(255) NOT NULL,
+  `harga` varchar(255) NOT NULL,
+  `kredit` varchar(255) NOT NULL,
+  `bukti` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengeluaran`
+--
+
+INSERT INTO `pengeluaran` (`id`, `tanggal`, `uraian`, `tipe`, `volume`, `satuan`, `harga`, `kredit`, `bukti`) VALUES
+(5, '2022-01-25', 'qweqwe', 'asdasd', 2, 'ggg', '1000', '2000', 'uteknoid.png'),
+(6, '2022-01-25', 'sdfsdfsdf', 'asdasdsd', 10, 'rrr', '10000', '100000', 'uteknoid1.png'),
+(7, '2022-01-26', 'dgdgdgdg', 'ssssdff', 1, 'dfd', '100000', '100000', 'uteknoid2.png');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pinjam`
 --
 
@@ -160,6 +179,47 @@ INSERT INTO `ruang_lab` (`id_lab`, `nama_lab`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `saldo`
+--
+
+CREATE TABLE `saldo` (
+  `id` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `saldo_masuk` varchar(255) NOT NULL,
+  `ket` text NOT NULL,
+  `bukti_saldo` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `saldo`
+--
+
+INSERT INTO `saldo` (`id`, `tanggal`, `saldo_masuk`, `ket`, `bukti_saldo`) VALUES
+(6, '2022-01-25', '5000000', 'Semester IV', 'uteknoid.png'),
+(7, '2022-01-26', '1000000', 'Semester V', 'uteknoid1.png'),
+(8, '2022-01-27', '1000000', 'Semester VI', 'uteknoid2.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `saldo_terkini`
+--
+
+CREATE TABLE `saldo_terkini` (
+  `id` int(11) NOT NULL,
+  `saldo_terkini` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `saldo_terkini`
+--
+
+INSERT INTO `saldo_terkini` (`id`, `saldo_terkini`) VALUES
+(1, '6798000');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -180,10 +240,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `npm`, `name`, `email`, `password`, `hp`, `qrlog`, `role_id`, `is_active`) VALUES
-(9, 1234567891, 'Nama Dosen', 'mail@gmail.com', '$2y$10$yrWWQl7U8fpkChkAFvq7hegf8nozbjyQuVCNNtkZiq2tQVzCfC5wy', '085123456789', 'A4OPkis338', 2, 1),
-(10, 123, 'Admin', 'admin@uncp.ac.id', '$2y$10$2OQ0DvgPbTOA0pCW.yunuOjbM5rCSx3YWIVqFKwnZn5zrJJvnv8oS', '081234567890', 'ivFH5jiPFl', 1, 1),
-(12, 111, 'uteknoid', 'mail@mail.com', '$2y$10$3X9yq7KmT86SE7OD5uQqkO4i0uMxx2GXfuhUm1NVem1t0JLuAXyM.', '081287367646', 'f5sw09yM7U', 1, 1),
-(13, 12345, 'Dosen 2', 'email@mail.com', '$2y$10$RouRNY/m0SVaPLHZCwl50OJTh.GLx/FYnt0mNLd5jeZ7NL.QzS69S', '087654321123', 'L6SuqoKyB5', 2, 1);
+(10, 123, 'Admin', 'admin@uncp.ac.id', '$2y$10$2OQ0DvgPbTOA0pCW.yunuOjbM5rCSx3YWIVqFKwnZn5zrJJvnv8oS', '081234567890', 'ivFH5jiPFl', 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -215,6 +272,12 @@ ALTER TABLE `option_laporan`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `pengeluaran`
+--
+ALTER TABLE `pengeluaran`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pinjam`
 --
 ALTER TABLE `pinjam`
@@ -225,6 +288,12 @@ ALTER TABLE `pinjam`
 --
 ALTER TABLE `ruang_lab`
   ADD PRIMARY KEY (`id_lab`);
+
+--
+-- Indexes for table `saldo`
+--
+ALTER TABLE `saldo`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
@@ -240,13 +309,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `alat`
 --
 ALTER TABLE `alat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `jadwal_lab`
 --
 ALTER TABLE `jadwal_lab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `option_laporan`
@@ -255,16 +324,28 @@ ALTER TABLE `option_laporan`
   MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `pengeluaran`
+--
+ALTER TABLE `pengeluaran`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `pinjam`
 --
 ALTER TABLE `pinjam`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `ruang_lab`
 --
 ALTER TABLE `ruang_lab`
-  MODIFY `id_lab` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_lab` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `saldo`
+--
+ALTER TABLE `saldo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user`

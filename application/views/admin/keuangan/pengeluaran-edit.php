@@ -31,32 +31,32 @@
 
                     <div class="form-group">
                       <label>Tanggal</label>
-                      <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?php echo $p->tanggal ?>">
+                      <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?php echo $p->tanggal ?>" required>
                     </div>
 
                     <div class="form-group">
                       <label>Uraian</label>
-                      <input type="text" class="form-control" id="uraian" name="uraian" value="<?php echo $p->uraian ?>">
+                      <input type="text" class="form-control" id="uraian" name="uraian" value="<?php echo $p->uraian ?>" required>
                     </div>
 
                     <div class="form-group">
                       <label>Merek/Tipe</label>
-                      <input type="text" class="form-control" id="tipe" name="tipe" value="<?php echo $p->tipe ?>">
+                      <input type="text" class="form-control" id="tipe" name="tipe" value="<?php echo $p->tipe ?>" required>
                     </div>
 
                     <div class="form-group">
                       <label>Volume</label>
-                      <input type="number" class="form-control" id="volume" name="volume" value="<?php echo $p->volume ?>">
+                      <input type="number" class="form-control" id="volume" name="volume" value="<?php echo $p->volume ?>" required>
                     </div>
 
                     <div class="form-group">
                       <label>Satuan</label>
-                      <input type="text" class="form-control" id="satuan" name="satuan" value="<?php echo $p->satuan ?>">
+                      <input type="text" class="form-control" id="satuan" name="satuan" value="<?php echo $p->satuan ?>" required>
                     </div>
 
                     <div class="form-group">
                       <label>Harga</label>
-                      <input type="number" class="form-control" id="harga" name="harga" placeholder="Hanya Angka (tanpa titik ataupun koma)" value="<?php echo $p->harga ?>">
+                      <input type="number" class="form-control" id="harga" name="harga" placeholder="Hanya Angka (tanpa titik ataupun koma)" value="<?php echo $p->harga ?>" required>
                     </div>
                     <div class="form-group">
                       <label>Bukti</label>

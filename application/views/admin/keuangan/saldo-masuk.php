@@ -70,6 +70,7 @@
                     <tr>
                       <th>No</th>
                       <th>Tanggal</th>
+                      <th>Keterangan</th>
                       <th>Jumlah Saldo Masuk</th>
                       <th style="text-align: center">Bukti</th>
                       <th style="text-align: center">Aksi</th>
@@ -86,7 +87,8 @@
                           echo "even";
                         } ?>">
                         <td><?php echo $i; ?></td>
-                        <td> <?php echo $s->tanggal ?> </td>
+                        <td> <?php echo date('d/m/Y', strtotime($s->tanggal)); ?> </td>
+                        <td> <?php echo $s->ket; ?> </td>
                         <td><?php echo "Rp. " . number_format($s->saldo_masuk, 0, ",", "."); ?></td>
                         <td align="center"><a class="btn btn-info btn-sm" target="_blank" href="<?php echo base_url('assets/img/saldo/').$s->bukti_saldo; ?>">LIHAT</a></td>
                         <td>
@@ -117,18 +119,24 @@
 
                           <div class="form-group">
                             <label>Tanggal Saldo Masuk</label>
-                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= set_value('tanggal'); ?>">
+                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= set_value('tanggal'); ?>" required>
                             <?= form_error('tanggal', '<small class="text-danger pl-3">', '</small>') ?>
                           </div>
 
                           <div class="form-group">
                             <label>Jumlah Saldo Masuk</label>
-                            <input type="number" class="form-control" id="saldo" name="saldo" placeholder="Hanya Angka (tanpa titik ataupun koma)" value="<?= set_value('saldo'); ?>">
+                            <input type="number" class="form-control" id="saldo" name="saldo" placeholder="Hanya Angka (tanpa titik ataupun koma)" value="<?= set_value('saldo'); ?>" required>
                             <?= form_error('saldo', '<small class="text-danger pl-3">', '</small>') ?>
+                          </div>
+
+                          <div class="form-group">
+                            <label>Keterangan</label>
+                            <input type="text" class="form-control" id="ket" name="ket" placeholder="Keterangan" value="<?= set_value('ket'); ?>" required>
+                            <?= form_error('ket', '<small class="text-danger pl-3">', '</small>') ?>
                           </div>
                           <div class="form-group">
                             <label>Bukti</label>
-                            <input type="file" class="form-control" id="bukti" name="bukti" value="<?= set_value('bukti'); ?>">
+                            <input type="file" class="form-control" id="bukti" name="bukti" value="<?= set_value('bukti'); ?>" required>
                             <?= form_error('bukti', '<small class="text-danger pl-3">', '</small>') ?>
                           </div>
 

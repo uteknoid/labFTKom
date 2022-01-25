@@ -789,6 +789,7 @@ class Admin extends CI_Controller
         $id = $this->input->post('id');
         $tanggal = $this->input->post('tanggal');
         $saldo = $this->input->post('saldo');
+        $ket = $this->input->post('ket');
 
 
         $where = array('id' => $id);
@@ -814,7 +815,8 @@ class Admin extends CI_Controller
         if ( ! $this->upload->do_upload('bukti')) {
             $data = array(
                 'tanggal' => $tanggal,
-                'saldo_masuk' => $saldo
+                'saldo_masuk' => $saldo,
+                'ket' => $ket
             );
 
             $where = array(
@@ -842,6 +844,7 @@ class Admin extends CI_Controller
             $data = array(
                 'tanggal' => $tanggal,
                 'saldo_masuk' => $saldo,
+                'ket' => $ket,
                 'bukti_saldo' => $bukti
             );
 
@@ -929,6 +932,7 @@ class Admin extends CI_Controller
             $data = [
                 'tanggal' => htmlspecialchars($this->input->post('tanggal', true)),
                 'saldo_masuk' => htmlspecialchars($this->input->post('saldo', true)),
+                'ket' => htmlspecialchars($this->input->post('ket', true)),
                 'bukti_saldo' => $bukti
             ];
 
@@ -1177,7 +1181,7 @@ class Admin extends CI_Controller
     function pengeluaran_print()
     {
         $this->load->view('admin/fpdf/fpdf');
-        $this->load->view('admin/keuangan/saldo-print');
+        $this->load->view('admin/keuangan/pengeluaran-print');
     }
 
 

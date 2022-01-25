@@ -43,7 +43,7 @@
               <div class="card-header">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahsaldo"><i class="fa fa-user fa-plus-circle"></i> Tambah Pengeluaran</button>
 
-                <!-- <a href="<?php //echo base_url() . 'admin/user_print'; ?>" class="btn btn-default" target="_blank"><i class="fa fa-print"></i> Cetak</a> -->
+                <a href="<?php echo base_url() . 'admin/pengeluaran_print'; ?>" class="btn btn-default" target="_blank"><i class="fa fa-print"></i> Cetak</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -105,42 +105,42 @@
 
                           <div class="form-group">
                             <label>Tanggal</label>
-                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= set_value('tanggal'); ?>">
+                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?= set_value('tanggal'); ?>" required>
                             <?= form_error('tanggal', '<small class="text-danger pl-3">', '</small>') ?>
                           </div>
 
                           <div class="form-group">
                             <label>Uraian</label>
-                            <input type="text" class="form-control" id="uraian" name="uraian" value="<?= set_value('uraian'); ?>">
+                            <input type="text" class="form-control" id="uraian" name="uraian" value="<?= set_value('uraian'); ?>" required>
                             <?= form_error('uraian', '<small class="text-danger pl-3">', '</small>') ?>
                           </div>
 
                           <div class="form-group">
                             <label>Merek/Tipe</label>
-                            <input type="text" class="form-control" id="tipe" name="tipe" value="<?= set_value('tipe'); ?>">
+                            <input type="text" class="form-control" id="tipe" name="tipe" value="<?= set_value('tipe'); ?>" required>
                             <?= form_error('tipe', '<small class="text-danger pl-3">', '</small>') ?>
                           </div>
 
                           <div class="form-group">
                             <label>Volume</label>
-                            <input type="number" class="form-control" id="volume" name="volume" value="<?= set_value('volume'); ?>">
+                            <input type="number" class="form-control" id="volume" name="volume" value="<?= set_value('volume'); ?>" required>
                             <?= form_error('volume', '<small class="text-danger pl-3">', '</small>') ?>
                           </div>
 
                           <div class="form-group">
                             <label>Satuan</label>
-                            <input type="text" class="form-control" id="satuan" name="satuan" value="<?= set_value('satuan'); ?>">
+                            <input type="text" class="form-control" id="satuan" name="satuan" value="<?= set_value('satuan'); ?>" required>
                             <?= form_error('satuan', '<small class="text-danger pl-3">', '</small>') ?>
                           </div>
 
                           <div class="form-group">
                             <label>Harga</label>
-                            <input type="number" class="form-control" id="harga" name="harga" placeholder="Hanya Angka (tanpa titik ataupun koma)" value="<?= set_value('harga'); ?>">
+                            <input type="number" class="form-control" id="harga" name="harga" placeholder="Hanya Angka (tanpa titik ataupun koma)" value="<?= set_value('harga'); ?>" required>
                             <?= form_error('harga', '<small class="text-danger pl-3">', '</small>') ?>
                           </div>
                           <div class="form-group">
                             <label>Bukti</label>
-                            <input type="file" class="form-control" id="bukti" name="bukti" value="<?= set_value('bukti'); ?>">
+                            <input type="file" class="form-control" id="bukti" name="bukti" value="<?= set_value('bukti'); ?>" required>
                             <?= form_error('bukti', '<small class="text-danger pl-3">', '</small>') ?>
                           </div>
 

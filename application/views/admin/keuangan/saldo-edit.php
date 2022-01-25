@@ -31,12 +31,17 @@
 
                       <div class="form-group">
                         <label>Tanggal Saldo Masuk</label>
-                        <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?php echo $s->tanggal ?>">
+                        <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?php echo $s->tanggal; ?>" required>
                       </div>
 
                       <div class="form-group">
                         <label>Jumlah Saldo Masuk</label>
-                        <input type="number" class="form-control" id="saldo" name="saldo" placeholder="Hanya Angka (tanpa titik ataupun koma)" value="<?php echo $s->saldo_masuk ?>">
+                        <input type="number" class="form-control" id="saldo" name="saldo" placeholder="Hanya Angka (tanpa titik ataupun koma)" value="<?php echo $s->saldo_masuk; ?>" required>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Keterangan</label>
+                        <input type="text" class="form-control" id="ket" name="ket" placeholder="Keterangan" value="<?php echo $s->ket; ?>" required>
                       </div>
                       <div class="form-group">
                         <label>Bukti</label>
